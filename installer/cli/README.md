@@ -23,7 +23,7 @@ The StreamPipes command-line interface (CLI) is focused on developers in order t
 * new core features for **backend** and **ui**.
 
 <!-- BEGIN do not edit: set via ../upgrade_versions.sh -->
-**Current version:** 0.93.0-SNAPSHOT
+**Current version:** 0.95.0-SNAPSHOT
 <!-- END do not edit -->
 
 ## TL;DR
@@ -98,7 +98,7 @@ streampipes env --set pipeline-element
 ```
 
 **Start** environment ( default: `dev` mode). Here the service definition in the selected environment is used to start the multi-container landscape.
-> **NOTE**: `dev` mode is enabled by default since we rely on open ports to core service such as `consul`, `couchdb`, `kafka` etc. to reach from the IDE when developing. If you don't want to map ports (except the UI port), then use the `--no-ports` flag.
+> **NOTE**: `dev` mode is enabled by default since we rely on open ports to core service such as `couchdb`, `kafka` etc. to reach from the IDE when developing. If you don't want to map ports (except the UI port), then use the `--no-ports` flag.
 
 ```bash
 streampipes up -d
@@ -120,12 +120,12 @@ streampipes down
 
 ## Additionally, useful commands
 
-**Start individual services only?** We got you! You chose a template that suits your needs and now you only want to start individual services from it, e.g. only Kafka and Consul.
+**Start individual services only?** We got you! You chose a template that suits your needs and now you only want to start individual services from it, e.g. only Kafka and CouchDB.
 
 > **NOTE**: the service names need to be present and match your current `.spenv` environment.
 
 ```bash
-streampipes up -d kafka consul
+streampipes up -d kafka couchdb
 ```
 
 **Get current environment** (if previously set using `streampipes env --set <environment>`).
@@ -152,20 +152,20 @@ streampipes pull
 
 **Stop** existing StreamPipes containers
 ```bash
-streampipes stop pipeline-elements-all-jvm
+streampipes stop extensions-all-jvm
 ```
 
 **Start** existing StreamPipes containers
 ```bash
-streampipes start pipeline-elements-all-jvm
+streampipes start extensions-all-jvm
 ```
 
 **Restart** existing services
 ```bash
-# restart backend consul container
-streampipes restart backend consul
+# restart backend couchdb container
+streampipes restart backend couchdb 
 # restart existing services by removing and recreating container instance
-streampipes restart --force-create pipeline-elements-all-jvm
+streampipes restart --force-create extensions-all-jvm
 ```
 
 **Clean** your system and remove created StreamPipes Docker volumes, StreamPipes docker network and dangling StreamPipes images of old image layers.
@@ -215,7 +215,7 @@ As of now, this step has to be done **manually**. All environments are located i
 ├── backend               # developing core backend features
 ├── basic                 # wanna run core, UI, connect etc from the IDE?
 ├── full                  # full version containing more pipeline elements
-├── lite                  # few pipeline elements, less memory  
+├── lite                  # few pipeline elements, less memory
 ├── pipeline-element      # developing new pipeline-elements
 └── ui                    # developing UI features
 ```

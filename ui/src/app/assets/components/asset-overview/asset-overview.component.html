@@ -189,13 +189,25 @@
                                             <button
                                                 color="accent"
                                                 mat-icon-button
-                                                matTooltip="Delete adapter"
+                                                matTooltip="Delete asset"
                                                 data-cy="delete"
                                                 matTooltipPosition="above"
                                                 (click)="deleteAsset(asset)"
                                             >
                                                 <i class="material-icons"
                                                     >delete</i
+                                                >
+                                            </button>
+                                            <button
+                                                color="accent"
+                                                mat-icon-button
+                                                matTooltip="Download asset"
+                                                data-cy="download"
+                                                matTooltipPosition="above"
+                                                (click)="downloadAsset(asset)"
+                                            >
+                                                <i class="material-icons"
+                                                    >download</i
                                                 >
                                             </button>
                                         </span>
